@@ -7,6 +7,6 @@ namespace BZZ_banking.Services.Entity
 {
     public class Db
     {
-        public static string GetConnectionString(string database) => $"Server=(localdb)\\MSSQLLocalDb;Database={database};Trusted_Connection=True;";
+        public static string GetConnectionString(string database) => $"Server=(localdb)\\MSSQLLocalDb;Database={database};User Id=sa;Password=root;";
     }
 }
