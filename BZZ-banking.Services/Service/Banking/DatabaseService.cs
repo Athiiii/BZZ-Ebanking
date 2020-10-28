@@ -14,16 +14,25 @@ namespace BZZ_banking.Services.Service.Demo
     {
         public string CreateNewSession()
         {
-            using (var connection = new SqlConnection(Db.GetConnectionString("master")))
+            try
             {
-                var session = RandomString(3);
-                // var dict = new Dictionary<string, object> { { "@dbname", $"BZZ_Banking_{session}" } };
-                var sql = File.ReadAllText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Service\\Banking\\SQL\\Init.sql")).Replace("[BZZ_Banking_EKN]", $"[BZZ_Banking_{session}]");
-                var initSql = "USE [master] \n CREATE DATABASE[BZZ_Banking_EKN] \n ALTER DATABASE[BZZ_Banking_EKN] SET COMPATIBILITY_LEVEL = 130".Replace("[BZZ_Banking_EKN]", $"[BZZ_Banking_{session}]");
+                using (var connection = new SqlConnection(Db.GetConnectionString("master")))
+                {
+                    var session = RandomString(3);
+                    // var dict = new Dictionary<string, object> { { "@dbname", $"BZZ_Banking_{session}" } };
+                    var sql = File.ReadAllText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Service\\Banking\\SQL\\Init.sql")).Replace("[BZZ_Banking_EKN]", $"[BZZ_Banking_{session}]");
+                    var initSql = "USE [master] \n CREATE DATABASE[BZZ_Banking_EKN] \n ALTER DATABASE[BZZ_Banking_EKN] SET COMPATIBILITY_LEVEL = 130".Replace("[BZZ_Banking_EKN]", $"[BZZ_Banking_{session}]");
 
-                connection.Query(initSql);
-                connection.Query(sql);
-                return session;
+                    connection.Query(initSql);
+                    connection.Query(sql);
+                    return session;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                File.WriteAllText(@"C:/BZZ/LOG", ex.Message);
+                return ex.Message;
             }
         }
 
