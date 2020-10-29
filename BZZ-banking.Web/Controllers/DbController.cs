@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BZZ_banking.Web.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
+    [Controller]
+    [Route("api/[controller]")]
     public class DbController : ControllerBase
     {
         [HttpGet]

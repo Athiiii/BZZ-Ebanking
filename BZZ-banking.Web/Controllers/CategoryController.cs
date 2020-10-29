@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BZZ_banking.Web.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class CategoryController : ControllerBase
     {
         [HttpGet]

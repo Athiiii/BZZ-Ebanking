@@ -22,6 +22,7 @@ namespace BZZ_banking.Web
         {
 
             services.AddControllersWithViews();
+          
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

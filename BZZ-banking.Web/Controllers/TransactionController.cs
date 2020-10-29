@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace BZZ_banking.Web.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class TransactionController : ControllerBase
     {
         [HttpGet("{dbname}")]

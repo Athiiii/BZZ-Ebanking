@@ -24,7 +24,7 @@ export class Foodmarket extends Component {
   }
 
   readCategories() {
-    fetch("/category")
+    fetch("api/category")
       .then(response => response.json())
       .then(data => {
         this.setState({ dropdownCategoryList: data, dropdownCategorySelected: data[0] })
@@ -32,7 +32,7 @@ export class Foodmarket extends Component {
   }
 
   readCategories() {
-    fetch("/category")
+    fetch("api/category")
       .then(response => response.json())
       .then(data => {
         this.setState({ dropdownCategoryList: data, dropdownCategorySelected: data[0] })
@@ -53,7 +53,7 @@ export class Foodmarket extends Component {
   }
 
   search() {
-    fetch("/menu?category=" + this.state.dropdownCategorySelected + "&search=" + this.state.search)
+    fetch("api/menu?category=" + this.state.dropdownCategorySelected + "&search=" + this.state.search)
       .then(response => response.json())
       .then(data => {
         this.setState({ readingData: data });

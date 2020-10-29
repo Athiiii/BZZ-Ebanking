@@ -31,7 +31,7 @@ namespace BZZ_banking.Services.Service.Demo
             }
             catch (Exception ex)
             {
-                File.WriteAllText(@"C:/BZZ/LOG", ex.Message);
+                File.WriteAllText(@"C:/_BZZ/LOG", ex.Message);
                 return ex.Message;
             }
         }
