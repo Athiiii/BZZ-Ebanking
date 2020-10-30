@@ -12,17 +12,33 @@ namespace BZZ_banking.Services.Service.Demo
 
         public dynamic CheckCredentials(string username, string password)
         {
-            using (var connection = new SqlConnection(Db.GetConnectionString("Foodmarket")))
+            try
             {
-                return connection.Query<dynamic>($"SELECT Id, Username, IsAdmin FROM dbo.Account WHERE [Username] = '{username}' AND [Password] = '{password}'");
+                using (var connection = new SqlConnection(Db.GetConnectionString("Foodmarket")))
+                {
+                    return connection.Query<dynamic>($"SELECT Id, Username, IsAdmin FROM dbo.Account WHERE [Username] = '{username}' AND [Password] = '{password}'");
+                }
+            }
+            catch (Exception ex)
+            {
+                var e = new Exception($"SELECT Id, Username, IsAdmin FROM dbo.Account WHERE [Username] = '{username}' AND [Password] = '{password}'", ex);
+                throw e;
             }
         }
 
         public object CheckEBankingCredentials(string dbname, string username, string password)
         {
-            using (var connection = new SqlConnection(Db.GetConnectionString("BZZ_Banking_" + dbname)))
+            try
             {
-                return connection.Query<dynamic>($"SELECT Id, Username, Firstname, Lastname, AccountName FROM dbo.Account WHERE [Username] = '{username}' AND [Password] = '{password}'");
+                using (var connection = new SqlConnection(Db.GetConnectionString("BZZ_Banking_" + dbname)))
+                {
+                    return connection.Query<dynamic>($"SELECT Id, Username, Firstname, Lastname, AccountName FROM dbo.Account WHERE [Username] = '{username}' AND [Password] = '{password}'");
+                }
+            }
+            catch (Exception ex)
+            {
+                var e = new Exception($"SELECT Id, Username, Firstname, Lastname, AccountName FROM dbo.Account WHERE [Username] = '{username}' AND [Password] = '{password}'", ex);
+                throw e;
             }
         }
     }

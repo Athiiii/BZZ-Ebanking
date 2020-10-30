@@ -38,13 +38,22 @@ namespace BZZ_banking.Services.Service.Demo
 
         public string SearchSession(string session)
         {
-            using (var connection = new SqlConnection(Db.GetConnectionString("master")))
+            try
             {
-                session = session.Replace(@"'", @"\'");
-                var db = connection.Query($"SELECT [name] FROM master.dbo.sysdatabases WHERE [name] = 'BZZ_Banking_{session}'");
-                if (db.Any())
-                    return session;
-                return string.Empty;
+
+                using (var connection = new SqlConnection(Db.GetConnectionString("master")))
+                {
+                    session = session.Replace(@"'", @"\'");
+                    var db = connection.Query($"SELECT [name] FROM master.dbo.sysdatabases WHERE [name] = 'BZZ_Banking_{session}'");
+                    if (db.Any())
+                        return session;
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                var e = new Exception($"SELECT [name] FROM master.dbo.sysdatabases WHERE [name] = 'BZZ_Banking_{session}'", ex);
+                throw e;
             }
         }
 
@@ -54,6 +63,7 @@ namespace BZZ_banking.Services.Service.Demo
             var chars = Enumerable.Range(0, length)
                 .Select(x => pool[new Random().Next(0, pool.Length)]);
             return new string(chars.ToArray()).ToUpper();
+
         }
     }
 }
