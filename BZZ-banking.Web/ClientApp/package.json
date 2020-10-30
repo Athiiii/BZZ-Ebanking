@@ -1,6 +1,7 @@
 {
     "name": "bzz_banking",
     "version": "0.1.0",
+    "proxy": "http://localhost:5000",
     "private": true,
     "dependencies": {
         "bootstrap": "^4.5.3",
@@ -19,12 +20,14 @@
     "devDependencies": {
         "ajv": "^6.12.6",
         "cross-env": "^5.2.1",
+        "dotenv-cli": "^4.0.0",
         "eslint-config-react-app": "^4.0.1",
         "eslint-plugin-flowtype": "^2.0.0",
         "eslint-plugin-import": "^2.22.1",
         "eslint-plugin-jsx-a11y": "^6.3.1",
         "eslint-plugin-react": "^7.21.5",
-        "typescript": "^3.9.7"
+        "typescript": "^3.9.7",
+        "watch": "^1.0.2"
     },
     "eslintConfig": {
         "extends": "react-app"
@@ -32,9 +35,11 @@
     "scripts": {
         "start": "rimraf ./build && react-scripts start",
         "build": "react-scripts build",
+        "build:dev": "SET NODE_ENV=dev npm run build --dev --configuration=dev && react-scripts build",
         "test": "cross-env CI=true react-scripts test --env=jsdom",
         "eject": "react-scripts eject",
-        "lint": "eslint ./src/"
+        "lint": "eslint ./src/",
+        "watch": "watch 'npm run build' _build/"
     },
     "browserslist": {
         "production": [

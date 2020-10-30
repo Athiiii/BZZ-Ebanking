@@ -17,7 +17,7 @@ export class Home extends Component {
 
   submit() {
     if (this.state.input === "") {
-      fetch("/db")
+      fetch("api/db")
         .then(response => response.text())
         .then(data => {
           console.log(data);
@@ -26,7 +26,7 @@ export class Home extends Component {
         })
 
     } else {
-      fetch("/db?session=" + this.state.input)
+      fetch("api/db?session=" + this.state.input)
         .then(response => response.text())
         .then(data => {
           console.log(data);

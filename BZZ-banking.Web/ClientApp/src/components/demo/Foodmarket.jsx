@@ -94,6 +94,11 @@ export class Foodmarket extends Component {
         <span>
           <div style={{ marginTop: '1rem' }}>
             {
+              readingData.length !== 0 ?
+                <span>{readingData.length} Menus found</span>
+                : null
+            }
+            {
               readingData.map((menu) =>
                 <Card className="mt-2" key={Math.random()}>
                   <CardBody>

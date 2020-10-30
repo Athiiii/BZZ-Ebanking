@@ -19,7 +19,7 @@ export class Login extends Component {
 
   login() {
     localStorage.setItem("password", this.state.password);
-    fetch("/login/" + localStorage.getItem("session") + "?username=" + this.state.username + "&password=" + this.state.password)
+    fetch("api/login/" + localStorage.getItem("session") + "?username=" + this.state.username + "&password=" + this.state.password)
       .then(response => response.json())
       .then(data => {
         try {

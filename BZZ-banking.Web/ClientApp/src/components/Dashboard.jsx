@@ -21,7 +21,7 @@ export class Dashboard extends Component {
 
   getTransactions() {
     var user = JSON.parse(localStorage.getItem("e-credentials"));
-    fetch("/transaction/" + localStorage.getItem("session") + "?username=" + user.Username + "&password=" + localStorage.getItem("password"))
+    fetch("api/transaction/" + localStorage.getItem("session") + "?username=" + user.Username + "&password=" + localStorage.getItem("password"))
       .then(response => response.json())
       .then(data => {
         this.setState({ transactions: JSON.parse(JSON.stringify(data)) });

@@ -17,7 +17,7 @@ export class FmLogin extends Component {
   }
 
   login() {
-    fetch("/login/login?username=" + this.state.username + "&password=" + this.state.password)
+    fetch("api/login/login?username=" + this.state.username + "&password=" + this.state.password)
       .then(response => response.json())
       .then(data => {
         try {
