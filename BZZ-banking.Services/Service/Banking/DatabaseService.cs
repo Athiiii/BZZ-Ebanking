@@ -38,8 +38,6 @@ namespace BZZ_banking.Services.Service.Demo
 
         public string SearchSession(string session)
         {
-            var i = 0;
-            var z = 3 / i;
             using (var connection = new SqlConnection(Db.GetConnectionString("master")))
             {
                 session = session.Replace(@"'", @"\'");
